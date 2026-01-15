@@ -4,6 +4,8 @@ PyThaiTTS
 """
 __version__ = "0.3.0"
 
+from pythaitts.preprocess import preprocess_text, num_to_thai, expand_maiyamok
+
 
 class TTS:
     def __init__(self, pretrained="lunarlist_onnx", mode="last_checkpoint", version="1.0", device:str="cpu") -> None:
@@ -52,7 +54,7 @@ class TTS:
                 "PyThaiTTS doesn't support %s pretrained." % self.pretrained
             )
 
-    def tts(self, text: str, speaker_idx: str = "Linda", language_idx: str = "th-th", return_type: str = "file", filename: str = None):
+    def tts(self, text: str, speaker_idx: str = "Linda", language_idx: str = "th-th", return_type: str = "file", filename: str = None, preprocess: bool = True):
         """
         speech synthesis
 
@@ -61,7 +63,13 @@ class TTS:
         :param str language_idx: language (default is th-th)
         :param str return_type: return type (default is file)
         :param str filename: path filename for save wav file if return_type is file.
+        :param bool preprocess: whether to preprocess text (convert numbers to Thai text and expand ๆ). Default is True.
         """
+        # Preprocess text if requested
+        if preprocess:
+            from pythaitts.preprocess import preprocess_text
+            text = preprocess_text(text)
+        
         if self.pretrained == "lunarlist" or self.pretrained == "lunarlist_onnx":
             return self.model(text=text,return_type=return_type,filename=filename)
         return self.model(
