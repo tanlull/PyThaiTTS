@@ -26,7 +26,9 @@ def main():
         print()
         
         # Generate speech and save to file
-        output_file = "output.wav"
+        import datetime
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        output_file = f"output_{timestamp}.wav"
         print(f"Generating speech and saving to {output_file}...")
         result = tts.tts(text, filename=output_file)
         print(f"✓ Speech generated successfully!")
