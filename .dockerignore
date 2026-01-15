@@ -1,0 +1,51 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Docs
+docs/
+/site
+
+# Notebooks
+.ipynb_checkpoints
+notebook/
+
+# GitHub
+.github/
+
+# Output files
+*.wav
+*.mp3
+output.*
+
+# Test files
+tests/
+test/
