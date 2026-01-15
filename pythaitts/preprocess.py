@@ -156,12 +156,7 @@ def num_to_thai(num_str: str) -> str:
         remainder = num % 1000000
         result = THAI_ONES[millions] + "ล้าน"
         if remainder > 0:
-            # Process hundred thousands and below
-            if remainder >= 100000:
-                result += num_to_thai(str(remainder))
-            else:
-                if remainder > 0:
-                    result += num_to_thai(str(remainder))
+            result += num_to_thai(str(remainder))
         return result
     else:
         # For very large numbers, use a simple approach
@@ -252,7 +247,7 @@ def preprocess_text(text: str, expand_numbers: bool = True, expand_maiyamok_char
         def replace_number(match):
             return num_to_thai(match.group())
         
-        # Match integers and decimals
-        result = re.sub(r'\d+\.?\d*', replace_number, result)
+        # Match integers and decimals (but not numbers ending with just a decimal point)
+        result = re.sub(r'\d+(?:\.\d+)?', replace_number, result)
     
     return result
