@@ -247,7 +247,8 @@ def preprocess_text(text: str, expand_numbers: bool = True, expand_maiyamok_char
         def replace_number(match):
             return num_to_thai(match.group())
         
-        # Match integers and decimals (but not numbers ending with just a decimal point)
-        result = re.sub(r'\d+(?:\.\d+)?', replace_number, result)
+        # Match integers and decimals, including optional negative sign
+        # Handles: -5, 123, 123.45
+        result = re.sub(r'-?\d+(?:\.\d+)?', replace_number, result)
     
     return result
