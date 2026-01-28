@@ -55,7 +55,7 @@ class TTS:
             from pythaitts.pretrained.vachana_tts import VachanaTTS
             self.model = VachanaTTS()
         else:
-            raise NotImplemented(
+            raise NotImplementedError(
                 "PyThaiTTS doesn't support %s pretrained." % self.pretrained
             )
 

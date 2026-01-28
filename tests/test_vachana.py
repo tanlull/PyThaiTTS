@@ -4,6 +4,7 @@ Unit tests for VachanaTTS integration
 """
 import unittest
 from unittest.mock import Mock, patch, MagicMock
+import numpy as np
 from pythaitts import TTS
 
 
@@ -66,6 +67,46 @@ class TestVachanaIntegration(unittest.TestCase):
         self.assertNotIn("ๆ", processed_text)
         self.assertIn("ห้า", processed_text)
         self.assertIn("คนคน", processed_text)
+
+    @patch('pythaitts.pretrained.vachana_tts.VachanaTTS')
+    def test_vachana_all_supported_voices(self, mock_vachana_class):
+        """Test that all supported voices work correctly"""
+        # Setup mock
+        mock_instance = Mock()
+        mock_instance.return_value = "/tmp/output.wav"
+        mock_vachana_class.return_value = mock_instance
+        
+        # Create TTS instance
+        tts = TTS(pretrained="vachana")
+        
+        # Test all supported voices
+        supported_voices = ["th_f_1", "th_m_1", "th_f_2", "th_m_2"]
+        for voice in supported_voices:
+            mock_instance.reset_mock()
+            result = tts.tts("สวัสดี", speaker_idx=voice)
+            
+            # Verify the voice was passed correctly
+            call_args = mock_instance.call_args
+            self.assertEqual(call_args.kwargs['speaker_idx'], voice)
+
+    @patch('pythaitts.pretrained.vachana_tts.VachanaTTS')
+    def test_vachana_waveform_return(self, mock_vachana_class):
+        """Test waveform return type functionality"""
+        # Setup mock
+        mock_instance = Mock()
+        mock_waveform = np.array([0.1, 0.2, 0.3, 0.4])
+        mock_instance.return_value = mock_waveform
+        mock_vachana_class.return_value = mock_instance
+        
+        # Create TTS instance
+        tts = TTS(pretrained="vachana")
+        
+        # Call tts method with waveform return type
+        result = tts.tts("สวัสดี", speaker_idx="th_f_1", return_type="waveform")
+        
+        # Verify the return type was set correctly
+        call_args = mock_instance.call_args
+        self.assertEqual(call_args.kwargs['return_type'], "waveform")
 
 
 if __name__ == '__main__':
