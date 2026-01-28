@@ -24,6 +24,26 @@ file = tts.tts("ภาษาไทย ง่าย มาก มาก", filenam
 wave = tts.tts("ภาษาไทย ง่าย มาก มาก",return_type="waveform") # It will get waveform.
 ```
 
+### Using Different TTS Models
+
+PyThaiTTS supports multiple TTS models. You can specify which model to use:
+
+```python
+from pythaitts import TTS
+
+# Use VachanaTTS (default voices: th_f_1, th_m_1, th_f_2, th_m_2)
+tts = TTS(pretrained="vachana")
+file = tts.tts("สวัสดีครับ", speaker_idx="th_f_1", filename="output.wav")
+
+# Use Lunarlist ONNX (default)
+tts = TTS(pretrained="lunarlist_onnx")
+file = tts.tts("ภาษาไทย ง่าย มาก", filename="output.wav")
+
+# Use KhanomTan
+tts = TTS(pretrained="khanomtan")
+file = tts.tts("ภาษาไทย", speaker_idx="Linda", filename="output.wav")
+```
+
 ### Text Preprocessing
 
 PyThaiTTS includes automatic text preprocessing to improve TTS quality:
