@@ -10,7 +10,9 @@ License: [Apache-2.0 License](https://github.com/PyThaiNLP/pythaitts/blob/main/L
 
 Install by pip:
 
-> pip install pythaitts
+```sh
+pip install pythaitts
+```
 
 ## Usage
 
