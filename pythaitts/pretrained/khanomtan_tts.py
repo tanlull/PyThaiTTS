@@ -70,8 +70,8 @@ class KhanomTan:
             return wavs
         if filename != None:
             with open(filename, "wb") as fp:
-                self.synthesizer.save_wav(wavs, fp)
+                self.synthesizer.save_wav(wavs, path=filename)
         else:
-            with tempfile.NamedTemporaryFile(suffix = ".wav", delete = False) as fp:
-                self.synthesizer.save_wav(wavs, fp)
-        return fp.name
+            filename= tempfile.NamedTemporaryFile(suffix = ".wav", delete = False).name
+            self.synthesizer.save_wav(wavs, path=filename)
+        return filename
