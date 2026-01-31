@@ -2,7 +2,7 @@
 """
 PyThaiTTS
 """
-__version__ = "0.3.0"
+__version__ = "0.4.2"
 
 from pythaitts.preprocess import preprocess_text, num_to_thai, expand_maiyamok
 
@@ -21,6 +21,7 @@ class TTS:
         
         You can see more about khanomtan tts at `https://github.com/wannaphong/KhanomTan-TTS-v1.0 <https://github.com/wannaphong/KhanomTan-TTS-v1.0>`_
         and `https://github.com/wannaphong/KhanomTan-TTS-v1.1 <https://github.com/wannaphong/KhanomTan-TTS-v1.1>`_
+        If you want to use khanomtan tts, you must to install coqui-tts before use the model by pip install coqui-tts.
         
         For lunarlist tts model, you must to install nemo before use the model by pip install nemo_toolkit['tts'].
         You can see more about lunarlist tts at `https://link.medium.com/OpPjQis6wBb <https://link.medium.com/OpPjQis6wBb>`_
