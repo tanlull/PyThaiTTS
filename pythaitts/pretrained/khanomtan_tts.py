@@ -7,6 +7,8 @@ It supports Thai, English, and others.
 
 KhanomTan TTS v1.0: `https://github.com/wannaphong/KhanomTan-TTS-v1.0 <https://github.com/wannaphong/KhanomTan-TTS-v1.0>`_
 KhanomTan TTS v1.1: `https://github.com/wannaphong/KhanomTan-TTS-v1.1 <https://github.com/wannaphong/KhanomTan-TTS-v1.1>`_
+
+This model uses the TTS package from: `https://github.com/idiap/coqui-ai-TTS <https://github.com/idiap/coqui-ai-TTS>`_
 """
 import tempfile
 from TTS.utils.synthesizer import Synthesizer
